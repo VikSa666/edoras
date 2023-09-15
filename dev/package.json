@@ -1,16 +1,15 @@
 {
-  "name": "edoras",
+  "name": "dev",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist"
+    "serve": "vite --host",
+    "build": "vue-tsc && vite build"
   },
-  "main": "./dist/edoras.umd.js",
-  "module": "./dist/edoras.es.js",
-  "types": "./dist/main.d.ts",
   "dependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "edoras": "file:../"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
