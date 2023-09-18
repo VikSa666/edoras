@@ -1,13 +1,12 @@
 <template>
   <div class="edoras-textarea-demo-wrapper">
     <h1>Simple textarea</h1>
-    <edoras-textarea v-model:value="value1" :dark="dark"></edoras-textarea>
+    <edoras-textarea v-model:value="value1" ></edoras-textarea>
     <p>Value read from textarea is {{ value1 }}</p>
 
     <h1>Customizable rows and columns</h1>
     <edoras-textarea
       v-model:value="value2"
-      :dark="dark"
       :rows="rows2"
       :cols="cols2"
     ></edoras-textarea>
@@ -20,21 +19,23 @@
     <p>You can only insert numbers</p>
     <edoras-textarea
       v-model:value="value3"
-      :dark="dark"
       :validate="onlyNumbers"
       :label="'Number'"
     ></edoras-textarea>
     <p>Value read from textarea is {{ value3 }}</p>
+
+    <h1>Auto expandable</h1>
+    <edoras-textarea
+      v-model:value="value4"
+      :autoexpand="true"
+    ></edoras-textarea>
+    <p>Value read from textarea is {{ value4 }}</p>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
 import { EdorasTextarea } from "../../src/main";
-
-defineProps<{
-  dark: boolean;
-}>();
 
 const value1 = ref("");
 
@@ -46,4 +47,6 @@ const onlyNumbers = (): boolean => {
   return !isNaN(Number(value3.value));
 };
 const value3 = ref("");
+
+const value4 = ref("");
 </script>

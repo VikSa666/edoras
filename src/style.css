@@ -14,13 +14,48 @@
   --night: #0d1411;
   --fire-engine-red: #d90429;
 
+  /* Black and white */
+  --pure-white: #fff;
+  --seasalt: #f8f8f8;
+  --anti-flash-white: #f0f0f0;
+  --platinum: #e8e8e8;
+  --platinum-2: #e0e0e0;
+  --timberwolf: #d8d8d8;
+  --timberwolf-2: #d0d0d0;
+  --silver: #c8c8c8;
+  --silver-2: #c0c0c0;
+  --silver-3: #b8b8b8;
+  --silver-4: #b0b0b0;
+  --silver-5: #a8a8a8;
+  --cadet-gray: #a0a0a0;
+  --battleship-gray: #989898;
+  --battleship-gray-2: #909090;
+  --battleship-gray-3: #888888;
+  --gray: #808080;
+  --gray-2: #787878;
+  --dim-gray: #707070;
+  --dim-gray-2: #686868;
+  --dim-gray-3: #606060;
+  --davy-s-gray: #585858;
+  --davy-s-gray-2: #505050;
+  --davy-s-gray-3: #484848;
+  --onyx: #404040;
+  --jet: #383838;
+  --jet-2: #303030;
+  --raisin-black: #282828;
+  --eerie-black: #202020;
+  --eerie-black-2: #181818;
+  --night-black: #101010;
+  --black: #080808;
+  --pure-black: #000;
+
   --inline-left-padding-text: 0.75rem;
   --inline-top-padding-text: 0.75rem;
   --inline-bottom-padding-text: 0.25rem;
   --inline-right-padding-text: 0.25rem;
 }
 
-.dark {
+.dark-color {
   /* Background colors */
   --edoras-background-color-primary: var(--gunmetal);
   --edoras-background-color-secondary: var(--black-olive);
@@ -38,9 +73,33 @@
   /* Borders and lines */
   --edoras-border-color-primary: var(--hunter-green);
   --edoras-border-color-secondary: var(--reseda-green);
+
+  --edoras-border-radius: 4px;
 }
 
-.light {
+.dark-bn {
+  /* Background colors */
+  --edoras-background-color-primary: var(--night-black);
+  --edoras-background-color-secondary: var(--eerie-black);
+  --edoras-background-color-tertiary: var(--raisin-black);
+
+  /* Text colors */
+  --edoras-text-color-primary: var(--silver);
+  --edoras-text-color-secondary: var(--silver-2);
+  --edoras-text-color-important: var(--floral-white);
+  --edoras-link-color: var(--fern-green);
+
+  /* Error colors */
+  --edoras-error-color: var(--fire-engine-red);
+
+  /* Borders and lines */
+  --edoras-border-color-primary: var(--silver-3);
+  --edoras-border-color-secondary: var(--silver-4);
+
+  --edoras-border-radius: 1px;
+}
+
+.light-color {
   /* Background colors */
   --edoras-background-color-primary: var(--floral-white);
   --edoras-background-color-secondary: var(--alabaster);
@@ -58,4 +117,28 @@
   /* Borders and lines */
   --edoras-border-color-primary: var(--dark-green);
   --edoras-border-color-secondary: var(--gunmetal);
+
+  --edoras-border-radius: 4px;
+}
+
+.light-bn {
+  /* Background colors */
+  --edoras-background-color-primary: var(--seasalt);
+  --edoras-background-color-secondary: var(--anti-flash-white);
+  --edoras-background-color-tertiary: var(--pure-white);
+
+  /* Text colors */
+  --edoras-text-color-primary: var(--night-black);
+  --edoras-text-color-secondary: var(--eerie-black);
+  --edoras-text-color-important: var(--onyx);
+  --edoras-link-color: var(--battleship-gray-3);
+
+  /* Error colors */
+  --edoras-error-color: var(--fire-engine-red);
+
+  /* Borders and lines */
+  --edoras-border-color-primary: var(--dim-gray-3);
+  --edoras-border-color-secondary: var(--dim-gray-2);
+
+  --edoras-border-radius: 1px;
 }

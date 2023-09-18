@@ -3,10 +3,11 @@
     <h1>Welcome to the demo</h1>
     <label for="dark">Dark mode:</label>
     <input id="dark" type="checkbox" v-model="dark" @change="updateTheme" />
+    <label for="bn">Black and white:</label>
+    <input id="bn" type="checkbox" v-model="bn" @change="updateTheme" />
 
     <h2>Edoras Textarea</h2>
     <edoras-textarea-demo
-      v-model="value"
       label="Label"
       placeholder="Placeholder"
       :dark="dark"
@@ -18,25 +19,36 @@
 import { onMounted, ref, watch } from "vue";
 import EdorasTextareaDemo from "../components/EdorasTextareaDemo.vue";
 
-const value = ref("");
 const dark = ref(false);
+const bn = ref(false);
 
 const updateTheme = () => {
-  const mode = dark.value ? "dark" : "light";
-  const previous = dark.value ? "light" : "dark";
-  console.log("update theme", mode, previous);
-  document.getElementsByTagName("html")[0].classList.remove(previous);
+  const modeDark = dark.value ? "dark" : "light";
+  const modeBN = bn.value ? "bn" : "color";
+  const mode = modeDark + "-" + modeBN;
+  const previousDark = dark.value ? "light" : "dark";
+  const previousBN = bn.value ? "color" : "bn";
+  const previous = previousDark + "-" + previousBN;
+  console.log("mode +" + mode);
+  console.log("previous +" + previous);
+
+  document
+    .getElementsByTagName("html")[0]
+    .classList.remove("light-bn", "light-color", "dark-bn", "dark-color");
   document.getElementsByTagName("html")[0].classList.add(mode);
 };
 onMounted(updateTheme);
 watch(() => dark, updateTheme);
+watch(() => bn, updateTheme);
 </script>
 
 <style>
 @import "../../src/style.css";
 
 :root {
-  font-family: "Roboto", sans-serif;
+  font-family: custom-font, BlinkMacSystemFont, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 html {
@@ -53,6 +65,8 @@ html {
 
 h1 {
   color: var(--edoras-text-color-primary);
+  font-weight: 400;
+  font-size: 32px;
 }
 
 h2 {

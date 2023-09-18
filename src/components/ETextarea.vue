@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="edoras-textarea-container"
-    :class="{
-      dark: dark,
-      light: !dark,
-    }"
-  >
+  <div class="edoras-textarea-container">
     <label
       :class="{
         'label-focused': isFocused || value,
@@ -13,18 +7,22 @@
       }"
       >{{ label ?? "Label" }}</label
     >
-    <textarea
-      class="edoras-textarea"
-      :class="{
-        error: validate && !validate(value),
-      }"
-      v-model="value"
-      :placeholder="placeholder ?? ''"
-      :rows="rows ?? 1"
-      :cols="cols ?? 10"
-      @focus="isFocused = true"
-      @blur="isFocused = false"
-    ></textarea>
+    <div class="textarea-wrapper">
+      <textarea
+        id="textarea"
+        class="edoras-textarea"
+        :class="{
+          error: validate && !validate(value),
+        }"
+        v-model="value"
+        :placeholder="placeholder ?? ''"
+        :rows="rows ?? 1"
+        :cols="cols ?? 10"
+        @focus="isFocused = true"
+        @blur="isFocused = false"
+        @input="resize"
+      ></textarea>
+    </div>
   </div>
 </template>
 
@@ -35,7 +33,7 @@ const isFocused = ref(false);
 
 const props = defineProps<{
   value: string;
-  dark: boolean;
+  autoexpand?: boolean;
   label?: string;
   rows?: number;
   cols?: number;
@@ -51,23 +49,36 @@ const value = computed({
     emit("update:value", inputValue);
   },
 });
+
+const resize = () => {
+  const target = document.getElementById("textarea") as HTMLTextAreaElement;
+  console.log("autoexpandable = " + props.autoexpand);
+  if (props.autoexpand) {
+    target.style.height = "18px";
+    console.log("scrollHeight = " + target.scrollHeight);
+    target.style.height = target.scrollHeight + "px";
+  }
+};
 </script>
 
 <style scoped>
 .edoras-textarea-container {
   position: relative;
+}
+
+.textarea-wrapper {
+  position: relative;
   width: fit-content;
 }
 
 .edoras-textarea {
-  position: relative;
-
   border: 1px solid var(--edoras-border-color-primary);
   box-sizing: border-box;
 
   background-color: var(--edoras-background-color-primary);
   color: var(--edoras-text-color-primary);
-  border-radius: 4px;
+  border-radius: var(--edoras-border-radius);
+
   /** Padding properties */
   padding-left: var(--inline-left-padding-text);
   padding-top: calc(2 * var(--inline-top-padding-text));
@@ -76,12 +87,15 @@ const value = computed({
 
   font-size: 16px;
   line-height: 1.5;
-  flex-wrap: nowrap;
+
+  /** Auto sizing */
   resize: none;
-  overflow-wrap: normal;
+  overflow: hidden;
 
   transition: border-color 0.2s ease, background-color 0.2s ease,
-    color 0.2s ease, box-shadow 0.2s ease;
+    color 0.2s ease;
+
+  font-family: inherit;
 }
 
 .edoras-textarea:hover {
@@ -90,9 +104,11 @@ const value = computed({
 }
 
 .edoras-textarea:focus {
-  outline-style: solid;
-  outline-width: 2px;
-  outline-color: var(--edoras-border-color-secondary);
+  /* outline-style: solid; */
+  outline: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  /* outline-color: var(--edoras-border-color-secondary); */
   background-color: var(--edoras-background-color-tertiary);
 }
 
@@ -110,9 +126,9 @@ const value = computed({
 }
 
 .edoras-textarea.error:focus {
-  outline-style: solid;
-  outline-width: 2px;
-  outline-color: var(--edoras-error-color);
+  outline: none;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
   color: var(--edoras-error-color);
 }
 
