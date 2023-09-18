@@ -1,0 +1,20 @@
+.edoras-button-primary {
+  background-color: var(--edoras-background-color-tertiary);
+  color: var(--edoras-text-color-primary);
+  border: 1px solid var(--edoras-border-color-primary);
+}
+
+.edoras-button-secondary {
+  background-color: var(--edoras-background-color-secondary);
+  color: var(--edoras-text-color-secondary);
+  border: 1px solid var(--edoras-border-color-secondary);
+}
+
+.edoras.button-tertiary {
+  background-color: var(--edoras-background-color-tertiary);
+  color: var(--edoras-text-color-tertiary);
+  border: none;
+  border-width: 0px;
+  border-style: none;
+  border-color: transparent;
+}

@@ -34,25 +34,13 @@
         placeholder="Placeholder"
         :dark="dark"
       ></edoras-text-input-demo>
-    </div>
-
-    <!-- <div id="Textarea" class="tabcontent">
-      <h2>Edoras Textarea</h2>
-      <edoras-textarea-demo
+      <edoras-icon-button-demo
+        v-if="activeTab === 3"
         label="Label"
         placeholder="Placeholder"
         :dark="dark"
-      ></edoras-textarea-demo>
+      />
     </div>
-
-    <div id="TextInput" class="tabcontent">
-      <h2>Edoras Text Input</h2>
-      <edoras-text-input-demo
-        label="Label"
-        placeholder="Placeholder"
-        :dark="dark"
-      ></edoras-text-input-demo>
-    </div> -->
   </div>
 </template>
 
@@ -60,6 +48,7 @@
 import { onMounted, ref, watch } from "vue";
 import EdorasTextareaDemo from "../components/EdorasTextareaDemo.vue";
 import EdorasTextInputDemo from "../components/EdorasTextInputDemo.vue";
+import EdorasIconButtonDemo from "../components/EdorasIconButtonDemo.vue";
 
 // Theme related stuff
 const dark = ref(false);
@@ -88,6 +77,7 @@ enum DemoPage {
   None,
   Textarea = "Textarea",
   TextInput = "TextInput",
+  IconButton = "IconButton",
 }
 
 const tabs = [
@@ -102,6 +92,10 @@ const tabs = [
   {
     title: "TextInput",
     tab: DemoPage.TextInput,
+  },
+  {
+    title: "IconButton",
+    tab: DemoPage.IconButton,
   },
 ];
 
