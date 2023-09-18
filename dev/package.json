@@ -8,8 +8,7 @@
     "build": "vue-tsc && vite build"
   },
   "dependencies": {
-    "vue": "^3.3.4",
-    "edoras": "file:../"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

@@ -1,20 +1,30 @@
 :root {
   --floral-white: #fff9ee;
+  --alabaster: #f5f2e5;
   --eggshell: #d6dbc9;
+  --beige: #d6dcc7;
   --ash-gray: #acbda3;
   --reseda-green: #6d906a;
   --fern-green: #588157;
   --hunter-green: #3a5a40;
   --brunswick-green: #344e41;
   --dark-green: #273b31;
+  --black-olive: #213129;
   --gunmetal: #1a2721;
+  --night: #0d1411;
   --fire-engine-red: #d90429;
+
+  --inline-left-padding-text: 0.75rem;
+  --inline-top-padding-text: 0.75rem;
+  --inline-bottom-padding-text: 0.25rem;
+  --inline-right-padding-text: 0.25rem;
 }
 
 .dark {
   /* Background colors */
   --edoras-background-color-primary: var(--gunmetal);
-  --edoras-background-color-secondary: var(--dark-green);
+  --edoras-background-color-secondary: var(--black-olive);
+  --edoras-background-color-tertiary: var(--dark-green);
 
   /* Text colors */
   --edoras-text-color-primary: var(--ash-gray);
@@ -28,4 +38,24 @@
   /* Borders and lines */
   --edoras-border-color-primary: var(--hunter-green);
   --edoras-border-color-secondary: var(--reseda-green);
+}
+
+.light {
+  /* Background colors */
+  --edoras-background-color-primary: var(--floral-white);
+  --edoras-background-color-secondary: var(--alabaster);
+  --edoras-background-color-tertiary: var(--eggshell);
+
+  /* Text colors */
+  --edoras-text-color-primary: var(--dark-green);
+  --edoras-text-color-secondary: var(--brunswick-green);
+  --edoras-text-color-important: var(--fern-green);
+  --edoras-link-color: var(--hunter-green);
+
+  /* Error colors */
+  --edoras-error-color: var(--fire-engine-red);
+
+  /* Borders and lines */
+  --edoras-border-color-primary: var(--dark-green);
+  --edoras-border-color-secondary: var(--gunmetal);
 }
