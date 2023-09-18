@@ -5,23 +5,63 @@
     <input id="dark" type="checkbox" v-model="dark" @change="updateTheme" />
     <label for="bn">Black and white:</label>
     <input id="bn" type="checkbox" v-model="bn" @change="updateTheme" />
+    <span>Active tab: {{ activeTab }}</span>
 
-    <h2>Edoras Textarea</h2>
-    <edoras-textarea-demo
-      label="Label"
-      placeholder="Placeholder"
-      :dark="dark"
-    ></edoras-textarea-demo>
+    <div
+      v-for="(tab, index) in tabs"
+      :key="index"
+      @click="activeTab = index"
+      :class="{ active: activeTab === index }"
+      class="tab"
+    >
+      {{ tab.title }}
+    </div>
+    <div class="tabcontent">
+      <div v-if="activeTab === 0">
+        <h1>Nothing to see here</h1>
+      </div>
+      <edoras-textarea-demo
+        v-if="activeTab === 1"
+        label="Label"
+        placeholder="Placeholder"
+        :dark="dark"
+      ></edoras-textarea-demo>
+      <edoras-text-input-demo
+        v-if="activeTab === 2"
+        label="Label"
+        placeholder="Placeholder"
+        :dark="dark"
+      ></edoras-text-input-demo>
+    </div>
+
+    <!-- <div id="Textarea" class="tabcontent">
+      <h2>Edoras Textarea</h2>
+      <edoras-textarea-demo
+        label="Label"
+        placeholder="Placeholder"
+        :dark="dark"
+      ></edoras-textarea-demo>
+    </div>
+
+    <div id="TextInput" class="tabcontent">
+      <h2>Edoras Text Input</h2>
+      <edoras-text-input-demo
+        label="Label"
+        placeholder="Placeholder"
+        :dark="dark"
+      ></edoras-text-input-demo>
+    </div> -->
   </div>
 </template>
 
 <script lang="ts" setup>
 import { onMounted, ref, watch } from "vue";
 import EdorasTextareaDemo from "../components/EdorasTextareaDemo.vue";
+import EdorasTextInputDemo from "../components/EdorasTextInputDemo.vue";
 
+// Theme related stuff
 const dark = ref(false);
 const bn = ref(false);
-
 const updateTheme = () => {
   const modeDark = dark.value ? "dark" : "light";
   const modeBN = bn.value ? "bn" : "color";
@@ -40,6 +80,30 @@ const updateTheme = () => {
 onMounted(updateTheme);
 watch(() => dark, updateTheme);
 watch(() => bn, updateTheme);
+
+// Tab related stuff
+enum DemoPage {
+  None,
+  Textarea = "Textarea",
+  TextInput = "TextInput",
+}
+
+const tabs = [
+  {
+    title: "None",
+    tab: DemoPage.None,
+  },
+  {
+    title: "Textarea",
+    tab: DemoPage.Textarea,
+  },
+  {
+    title: "TextInput",
+    tab: DemoPage.TextInput,
+  },
+];
+
+const activeTab = ref(0);
 </script>
 
 <style>
@@ -79,5 +143,32 @@ p {
 
 label {
   color: var(--edoras-text-color-primary);
+}
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px; /* Adjust the width as needed */
+}
+
+.tab {
+  cursor: pointer;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-bottom: none;
+  background-color: #f0f0f0;
+  text-align: center;
+  user-select: none;
+}
+
+.tab.active {
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.tabcontent {
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-top: none;
 }
 </style>
