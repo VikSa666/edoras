@@ -3,26 +3,33 @@
     <label
       :class="{
         'label-focused': isFocused || value,
-        'label-error': validate && !validate(value),
+        'label-error': validate && !validate(value).isOk,
         'label-disabled': disabled,
       }"
       >{{ label ?? "Label" }}</label
     >
     <div class="text-input-wrapper">
       <input
+        id="input"
         type="text"
+        :size="actualSize() ?? 20"
         class="edoras-text-input"
         :class="{
-          error: validate && !validate(value),
+          error: validate && !validate(value).isOk,
         }"
         :disabled="disabled ?? false"
         v-model="value"
         :placeholder="placeholder ?? ''"
-        :rows="rows ?? 1"
-        :cols="cols ?? 10"
         @focus="isFocused = true"
         @blur="isFocused = false"
       />
+    </div>
+    <div v-if="validate" class="error-message-label-wrapper">
+      <transition>
+        <span v-if="!validate(value).isOk" class="error-message">{{
+          validate(value).errorMessage
+        }}</span>
+      </transition>
     </div>
   </div>
 </template>
@@ -34,13 +41,14 @@ const isFocused = ref(false);
 
 const props = defineProps<{
   value: string;
+  size?: number;
   disabled?: boolean;
   autoexpand?: boolean;
   label?: string;
   rows?: number;
   cols?: number;
   placeholder?: string;
-  validate?: (input: string) => boolean;
+  validate?: (input: string) => { isOk: boolean; errorMessage: string };
 }>();
 const emit = defineEmits(["update:value"]);
 const value = computed({
@@ -51,6 +59,19 @@ const value = computed({
     emit("update:value", inputValue);
   },
 });
+
+const MIN_SIZE = 1;
+const MAX_SIZE = 100;
+
+const actualSize = () => {
+  if (props.size && props.size <= MIN_SIZE) {
+    return MIN_SIZE;
+  } else if (props.size && props.size >= MAX_SIZE) {
+    return MAX_SIZE;
+  } else {
+    return props.size;
+  }
+};
 </script>
 
 <style scoped>
@@ -100,6 +121,7 @@ const value = computed({
   background-color: var(--edoras-background-color-disabled);
   color: var(--edoras-text-color-tertiary);
   border-color: var(--edoras-border-color-tertiary);
+  cursor: not-allowed;
 }
 
 .edoras-text-input:hover {
@@ -122,9 +144,6 @@ const value = computed({
 }
 
 .edoras-text-input.error {
-  /* outline-style: solid;
-    outline-width: 2px;
-    outline-color: var(--edoras-error-color); */
   border-color: var(--edoras-error-color);
   color: var(--edoras-error-color);
 }
@@ -163,5 +182,33 @@ label {
 
 .label-error {
   color: var(--edoras-error-color);
+}
+
+.error-message-label-wrapper {
+  position: relative;
+  height: 0.75em;
+  padding-left: 0.75em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 0.75em;
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+}
+
+.error-message {
+  color: var(--edoras-error-color);
+  font-size: 0.75em;
+  position: absolute;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: translateY(-0.75em);
+  opacity: 0;
 }
 </style>

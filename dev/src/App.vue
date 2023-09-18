@@ -7,14 +7,16 @@
     <input id="bn" type="checkbox" v-model="bn" @change="updateTheme" />
     <span>Active tab: {{ activeTab }}</span>
 
-    <div
-      v-for="(tab, index) in tabs"
-      :key="index"
-      @click="activeTab = index"
-      :class="{ active: activeTab === index }"
-      class="tab"
-    >
-      {{ tab.title }}
+    <div class="tabs">
+      <div
+        v-for="(tab, index) in tabs"
+        :key="index"
+        @click="activeTab = index"
+        :class="{ active: activeTab === index }"
+        class="tab"
+      >
+        {{ tab.title }}
+      </div>
     </div>
     <div class="tabcontent">
       <div v-if="activeTab === 0">
@@ -147,28 +149,29 @@ label {
 
 .tabs {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   max-width: 300px; /* Adjust the width as needed */
 }
 
 .tab {
   cursor: pointer;
   padding: 8px 16px;
-  border: 1px solid #ccc;
+  color: var(--edoras-text-color-primary);
+  border: 1px solid var(--edoras-border-color-secondary);
+  background-color: var(--edoras-background-color-primary);
   border-bottom: none;
-  background-color: #f0f0f0;
   text-align: center;
   user-select: none;
 }
 
 .tab.active {
-  background-color: #fff;
-  border-color: #ccc;
+  color: var(--edoras-text-color-primary);
+  background-color: var(--edoras-background-color-secondary);
+  border-color: var(--edoras-border-color-secondary);
 }
 
 .tabcontent {
   padding: 16px;
-  border: 1px solid #ccc;
-  border-top: none;
+  background-color: var(--edoras-background-color-secondary);
 }
 </style>

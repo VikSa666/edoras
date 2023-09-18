@@ -4,32 +4,21 @@
     <edoras-text-input v-model:value="value1"></edoras-text-input>
     <p>Value read from text-input is {{ value1 }}</p>
 
-    <h1>Customizable rows and columns</h1>
-    <edoras-text-input
-      v-model:value="value2"
-      :rows="rows2"
-      :cols="cols2"
-    ></edoras-text-input>
-
-    <input type="number" id="rowsInput" v-model="rows2" />
-    <input type="number" id="colsInput" v-model="cols2" />
-    <p>Value read from text-input is {{ value2 }}</p>
-
     <h1>With validation</h1>
     <p>You can only insert numbers</p>
     <edoras-text-input
-      v-model:value="value3"
+      v-model:value="value2"
       :validate="onlyNumbers"
       :label="'Number'"
     ></edoras-text-input>
-    <p>Value read from text-input is {{ value3 }}</p>
+    <p>Value read from text-input is {{ value2 }}</p>
+
+    <h1>Sizeable</h1>
+    <edoras-text-input v-model:value="value3" :size="size" />
+    <input type="number" v-model="size" />
 
     <h1>Auto expandable</h1>
-    <edoras-text-input
-      v-model:value="value4"
-      :autoexpand="true"
-    ></edoras-text-input>
-    <p>Value read from text-input is {{ value4 }}</p>
+    <p>TO BE DONE</p>
 
     <h1>Disabled</h1>
     <edoras-text-input
@@ -48,11 +37,15 @@ const value1 = ref("");
 const value2 = ref("");
 const rows2 = ref(1);
 const cols2 = ref(10);
-
 const onlyNumbers = (): boolean => {
-  return !isNaN(Number(value3.value));
+  return {
+    isOk: !isNaN(Number(value2.value)),
+    errorMessage: "Only numbers allowed",
+  };
 };
+
 const value3 = ref("");
+const size = ref(20);
 
 const value4 = ref("");
 </script>
