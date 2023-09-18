@@ -4,6 +4,7 @@
       :class="{
         'label-focused': isFocused || value,
         'label-error': validate && !validate(value),
+        'label-disabled': disabled,
       }"
       >{{ label ?? "Label" }}</label
     >
@@ -14,6 +15,7 @@
         :class="{
           error: validate && !validate(value),
         }"
+        :disabled="disabled ?? false"
         v-model="value"
         :placeholder="placeholder ?? ''"
         :rows="rows ?? 1"
@@ -33,6 +35,7 @@ const isFocused = ref(false);
 
 const props = defineProps<{
   value: string;
+  disabled?: boolean;
   autoexpand?: boolean;
   label?: string;
   rows?: number;
@@ -98,6 +101,18 @@ const resize = () => {
   font-family: inherit;
 }
 
+.edoras-textarea:disabled {
+  background-color: var(--edoras-background-color-disabled);
+  color: var(--edoras-text-color-tertiary);
+  border-color: var(--edoras-border-color-tertiary);
+}
+
+.edoras-textarea:disabled:hover {
+  background-color: var(--edoras-background-color-disabled);
+  color: var(--edoras-text-color-tertiary);
+  border-color: var(--edoras-border-color-tertiary);
+}
+
 .edoras-textarea:hover {
   background-color: var(--edoras-background-color-secondary);
   border-color: var(--edoras-border-color-secondary);
@@ -151,6 +166,10 @@ label {
   transform: translateY(-0.75em);
   font-size: 0.75em !important;
   color: var(--edoras-text-color-primary);
+}
+
+.label-disabled {
+  color: var(--edoras-text-color-tertiary);
 }
 
 .label-error {

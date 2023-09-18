@@ -10,6 +10,7 @@
   --brunswick-green: #344e41;
   --dark-green: #273b31;
   --black-olive: #213129;
+  --black-olive-gunmetal: #1d2c25;
   --gunmetal: #1a2721;
   --night: #0d1411;
   --fire-engine-red: #d90429;
@@ -60,10 +61,12 @@
   --edoras-background-color-primary: var(--gunmetal);
   --edoras-background-color-secondary: var(--black-olive);
   --edoras-background-color-tertiary: var(--dark-green);
+  --edoras-background-color-disabled: var(--black-olive-gunmetal);
 
   /* Text colors */
   --edoras-text-color-primary: var(--ash-gray);
   --edoras-text-color-secondary: var(--eggshell);
+  --edoras-text-color-tertiary: var(--brunswick-green);
   --edoras-text-color-important: var(--floral-white);
   --edoras-link-color: var(--fern-green);
 
@@ -73,6 +76,7 @@
   /* Borders and lines */
   --edoras-border-color-primary: var(--hunter-green);
   --edoras-border-color-secondary: var(--reseda-green);
+  --edoras-border-color-tertiary: var(--dark-green);
 
   --edoras-border-radius: 4px;
 }
@@ -82,10 +86,12 @@
   --edoras-background-color-primary: var(--night-black);
   --edoras-background-color-secondary: var(--eerie-black);
   --edoras-background-color-tertiary: var(--raisin-black);
+  --edoras-background-color-disabled: var(--eerie-black-2);
 
   /* Text colors */
   --edoras-text-color-primary: var(--silver);
   --edoras-text-color-secondary: var(--silver-2);
+  --edoras-text-color-tertiary: var(--davy-s-gray);
   --edoras-text-color-important: var(--floral-white);
   --edoras-link-color: var(--fern-green);
 
@@ -95,6 +101,7 @@
   /* Borders and lines */
   --edoras-border-color-primary: var(--silver-3);
   --edoras-border-color-secondary: var(--silver-4);
+  --edoras-border-color-tertiary: var(--davy-s-gray);
 
   --edoras-border-radius: 1px;
 }
@@ -104,11 +111,13 @@
   --edoras-background-color-primary: var(--floral-white);
   --edoras-background-color-secondary: var(--alabaster);
   --edoras-background-color-tertiary: var(--eggshell);
+  --edoras-background-color-disabled: var(--alabaster);
 
   /* Text colors */
   --edoras-text-color-primary: var(--dark-green);
   --edoras-text-color-secondary: var(--brunswick-green);
-  --edoras-text-color-important: var(--fern-green);
+  --edoras-text-color-tertiary: var(--fern-green);
+  --edoras-text-color-important: var(--hunger-green);
   --edoras-link-color: var(--hunter-green);
 
   /* Error colors */
@@ -117,6 +126,7 @@
   /* Borders and lines */
   --edoras-border-color-primary: var(--dark-green);
   --edoras-border-color-secondary: var(--gunmetal);
+  --edoras-border-color-tertiary: var(--fern-green);
 
   --edoras-border-radius: 4px;
 }
@@ -126,10 +136,12 @@
   --edoras-background-color-primary: var(--seasalt);
   --edoras-background-color-secondary: var(--anti-flash-white);
   --edoras-background-color-tertiary: var(--pure-white);
+  --edoras-background-color-disabled: var(--anti-flash-white);
 
   /* Text colors */
   --edoras-text-color-primary: var(--night-black);
   --edoras-text-color-secondary: var(--eerie-black);
+  --edoras-text-color-tertiary: var(--cadet-gray);
   --edoras-text-color-important: var(--onyx);
   --edoras-link-color: var(--battleship-gray-3);
 
@@ -139,6 +151,7 @@
   /* Borders and lines */
   --edoras-border-color-primary: var(--dim-gray-3);
   --edoras-border-color-secondary: var(--dim-gray-2);
+  --edoras-border-color-tertiary: var(--cadet-gray);
 
   --edoras-border-radius: 1px;
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="edoras-textarea-demo-wrapper">
     <h1>Simple textarea</h1>
-    <edoras-textarea v-model:value="value1" ></edoras-textarea>
+    <edoras-textarea v-model:value="value1"></edoras-textarea>
     <p>Value read from textarea is {{ value1 }}</p>
 
     <h1>Customizable rows and columns</h1>
@@ -30,6 +30,9 @@
       :autoexpand="true"
     ></edoras-textarea>
     <p>Value read from textarea is {{ value4 }}</p>
+
+    <h1>Disabled</h1>
+    <edoras-textarea v-model:value="value4" :disabled="true"></edoras-textarea>
   </div>
 </template>
 
